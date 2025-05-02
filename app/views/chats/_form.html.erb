@@ -2,18 +2,22 @@
   <% if chat.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
-
       <ul>
-        <% chat.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% chat.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :sender_id, "Sender", style: "display: block" %>
+    <%= form.collection_select :sender_id, User.all, :id, :email %>
+  </div>
+
+  <div>
+    <%= form.label :receiver_id, "Receiver", style: "display: block" %>
+    <%= form.collection_select :receiver_id, User.all, :id, :email %>
   </div>
 
   <div>

@@ -1,12 +1,13 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Full name:</strong>
-    <%= "#{user.first_name} #{user.last_name}" %>
-  </p>
+<p>
+  <strong>Full name:</strong>
+  <%= "#{user.first_name} #{user.last_name}" %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= user.email %>
+</p>
+<p>
+  <%= link_to "Show this user", user_path(user) %>
+</p>
+<hr>
 
-  <p>
-    <strong>Email:</strong>
-    <%= user.email %>
-  </p>
-
-</div>
