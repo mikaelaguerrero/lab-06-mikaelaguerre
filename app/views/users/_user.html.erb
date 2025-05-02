@@ -6,8 +6,10 @@
   <strong>Email:</strong>
   <%= user.email %>
 </p>
-<p>
-  <%= link_to "Show this user", user_path(user) %>
-</p>
+<% unless current_page?(user_path(user)) %>
+  <p>
+    <%= link_to "Show this user", user_path(user) %>
+  </p>
+<% end %>
 <hr>
 

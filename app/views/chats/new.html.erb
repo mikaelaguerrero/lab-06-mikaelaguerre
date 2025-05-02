@@ -1,8 +1,11 @@
 <% content_for :title, "New chat" %>
 
 <h1>New chat</h1>
+<p style="color: gray">
+  To select a sender or receiver, click the field and either type part of the user's email or use the up ⬆ and down ⬇ arrow keys to browse through existing emails.
+</p>
 
-<%= render "form", chat: @chat %>
+<%= render "form", chat: @chat, users: @users %>
 
 <br>
 

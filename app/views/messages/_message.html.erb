@@ -10,7 +10,7 @@
   <strong>Body:</strong>
   <%= message.body %>
 </p>
-<p>
-  <%= link_to "Show this message", message_path(message) %>
-</p>
+<% unless current_page?(message_path(message)) %>
+  <p><%= link_to "Show this message", message_path(message) %></p>
+<% end %>
 <hr>

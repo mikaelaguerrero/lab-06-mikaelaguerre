@@ -12,15 +12,15 @@
 
   <div>
     <%= form.label :sender_id, "Sender", style: "display: block" %>
-    <%= form.collection_select :sender_id, User.all, :id, :email %>
+    <%= form.collection_select :sender_id, User.all, :id, :email, { prompt: "Select sender" } %>
   </div>
 
   <div>
     <%= form.label :receiver_id, "Receiver", style: "display: block" %>
-    <%= form.collection_select :receiver_id, User.all, :id, :email %>
+    <%= form.collection_select :receiver_id, User.all, :id, :email, { prompt: "Select receiver" } %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Create Chat" %>
   </div>
 <% end %>

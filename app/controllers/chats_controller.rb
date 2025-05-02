@@ -13,7 +13,9 @@ class ChatsController < ApplicationController
   # GET /chats/new
   def new
     @chat = Chat.new
+    @users = User.all
   end
+  
 
   # GET /chats/1/edit
   def edit
@@ -22,49 +24,38 @@ class ChatsController < ApplicationController
   # POST /chats or /chats.json
   def create
     @chat = Chat.new(chat_params)
-
-    respond_to do |format|
-      if @chat.save
-        format.html { redirect_to @chat, notice: "Chat was successfully created." }
-        format.json { render :show, status: :created, location: @chat }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @chat.errors, status: :unprocessable_entity }
-      end
+    @users = User.all  # <- asegúrate de incluir esto
+  
+    if @chat.save
+      redirect_to @chat, notice: "Chat was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /chats/1 or /chats/1.json
   def update
-    respond_to do |format|
-      if @chat.update(chat_params)
-        format.html { redirect_to @chat, notice: "Chat was successfully updated." }
-        format.json { render :show, status: :ok, location: @chat }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @chat.errors, status: :unprocessable_entity }
-      end
+    if @chat.update(chat_params)
+      redirect_to @chat, notice: "Chat was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /chats/1 or /chats/1.json
   def destroy
     @chat.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to chats_path, status: :see_other, notice: "Chat was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to chats_path, notice: "Chat was successfully destroyed.", status: :see_other
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chat
-      @chat = Chat.find(params.expect(:id))
+      @chat = Chat.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def chat_params
-      params.expect(chat: [ :name ])
+      params.require(:chat).permit(:sender_id, :receiver_id)
     end
 end
