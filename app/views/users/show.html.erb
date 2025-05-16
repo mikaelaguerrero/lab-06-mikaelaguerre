@@ -6,3 +6,30 @@
   <%= link_to "Back to users", users_path %>
 
 </div>
+
+<h2>Chats of this user:</h2>
+<ul>
+  <% @user.sent_chats.each do |chat| %>
+    <li>
+      Chat with <%= chat.receiver.email %> (as sender) - 
+      <%= link_to "View", chat_path(chat) %>
+    </li>
+  <% end %>
+
+  <% @user.received_chats.each do |chat| %>
+    <li>
+      Chat with <%= chat.sender.email %> (as receiver) - 
+      <%= link_to "View", chat_path(chat) %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Messages sent by this user:</h2>
+<ul>
+  <% @user.messages.each do |message| %>
+    <li>
+      "<%= message.body %>" in Chat <%= link_to message.chat_id, chat_path(message.chat_id) %> — 
+      <%= link_to "View", message_path(message) %>
+    </li>
+  <% end %>
+</ul>

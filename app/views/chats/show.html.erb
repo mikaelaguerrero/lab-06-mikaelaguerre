@@ -5,3 +5,19 @@
 <div>
   <%= link_to "Back to chats", chats_path %>
 </div>
+
+<h2>Participants:</h2>
+<p>
+  Sender: <%= @chat.sender.email %><br>
+  Receiver: <%= @chat.receiver.email %>
+</p>
+
+<h2>Messages in this chat:</h2>
+<ul>
+  <% @chat.messages.each do |message| %>
+    <li>
+      <strong><%= message.user.email %>:</strong> <%= message.body %> —
+      <%= link_to "View", message_path(message) %>
+    </li>
+  <% end %>
+</ul>

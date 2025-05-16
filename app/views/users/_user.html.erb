@@ -2,14 +2,21 @@
   <strong>Full name:</strong>
   <%= "#{user.first_name} #{user.last_name}" %>
 </p>
+
 <p>
   <strong>Email:</strong>
   <%= user.email %>
 </p>
+
+<p>
+  <strong>Messages sent:</strong> <%= user.messages.count %>
+</p>
+
 <% unless current_page?(user_path(user)) %>
   <p>
-    <%= link_to "Show this user", user_path(user) %>
+    <%= link_to "Show this user", user_path(user) %> |
+    <%= link_to "Edit", edit_user_path(user) %>
   </p>
 <% end %>
-<hr>
 
+<hr>
