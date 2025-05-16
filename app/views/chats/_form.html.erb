@@ -19,8 +19,10 @@
     <%= form.label :receiver_id, "Receiver", style: "display: block" %>
     <%= form.collection_select :receiver_id, users, :id, :email, { prompt: "Select receiver" } %>
   </div>
-
+<br>
   <div>
     <%= form.submit %>
   </div>
+<br>
+<hr>
 <% end %>

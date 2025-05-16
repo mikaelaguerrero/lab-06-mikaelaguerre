@@ -1,11 +1,12 @@
 <% content_for :title, "Messages" %>
-
+<hr>
 <h1>Messages</h1>
 
 <p style="color: green"><%= notice %></p>
+<hr>
+<%= link_to "New message", new_message_path %>
+<hr>
 
 <div id="messages">
   <%= render @messages %>
 </div>
-
-<%= link_to "New message", new_message_path %>

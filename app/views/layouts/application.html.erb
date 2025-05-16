@@ -23,13 +23,13 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <li><%= link_to "Users", users_path %></li>
-        <li><%= link_to "Chats", chats_path %></li>
-        <li><%= link_to "Messages", messages_path %></li>
-      </ul>
+    <nav style="text-align: left; margin-bottom: 20px;">
+      <br>
+      <%= link_to "Users", users_path %> |
+      <%= link_to "Chats", chats_path %> |
+      <%= link_to "Messages", messages_path %>
     </nav>
+
     <%= yield %>
   </body>
 </html>

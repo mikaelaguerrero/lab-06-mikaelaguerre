@@ -1,11 +1,15 @@
 <% content_for :title, "Chats" %>
-
+<hr>
 <h1>Chats</h1>
 
 <p style="color: green"><%= notice %></p>
+<hr>
+<%= link_to "New chat", new_chat_path %>
+
+<hr>
 
 <div id="chats">
   <%= render @chats %>
 </div>
 
-<%= link_to "New chat", new_chat_path %>
+

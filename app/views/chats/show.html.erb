@@ -1,16 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
+<hr>
+<h2>Participants:</h2>
 <%= render @chat %>
+<br>
 
 <div>
   <%= link_to "Back to chats", chats_path %>
-</div>
 
-<h2>Participants:</h2>
-<p>
-  Sender: <%= @chat.sender.email %><br>
-  Receiver: <%= @chat.receiver.email %>
-</p>
+</div>
+<br>
 
 <h2>Messages in this chat:</h2>
 <ul>
