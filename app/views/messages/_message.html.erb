@@ -1,0 +1,35 @@
+<p>
+  <strong>Sender:</strong>
+  <%= message.user.email %>
+</p>
+
+<p>
+  <strong>Chat ID:</strong>
+  <%= message.chat_id %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= message.body %>
+</p>
+
+<% unless current_page?(message_path(message)) %>
+  <p>
+    <%= link_to "Show this message", message_path(message) %>
+    <% if can? :edit, message %>
+      | <%= link_to "Edit", edit_message_path(message) %>
+    <% end %>
+    <% if can? :destroy, message %>
+      <div id="delete-message-<%= message.id %>" style="display: inline;">
+        | <%= link_to "Delete", "#", onclick: "showConfirmMsg(#{message.id}); return false;" %>
+      </div>
+      <div id="confirm-delete-message-<%= message.id %>" style="display: none; margin-top: 5px;">
+        <%= button_to "Confirm Delete", message_path(message), method: :delete, form: { style: "display: inline;" }, data: { turbo: false } %>
+        <button type="button" onclick="cancelConfirmMsg(#{message.id})">Cancel</button>
+      </div>
+    <% end %>
+  </p>
+<% end %>
+
+
+<hr>

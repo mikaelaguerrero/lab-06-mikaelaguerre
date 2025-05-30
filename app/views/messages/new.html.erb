@@ -1,0 +1,7 @@
+<% content_for :title, "New Message" %>
+
+<h1>New Message</h1>
+
+<%= render "form", message: @message, users: User.all, chats: Chat.all %>
+
+<%= link_to "Back to messages", messages_path %>

@@ -1,0 +1,24 @@
+<% content_for :title, "Editing Chat" %>
+
+<h1>Editing Chat</h1>
+
+<%= render "form", chat: @chat, users: User.all %>
+
+
+<% if @chat.errors.any? %>
+  <div style="color: red">
+    <h2><%= pluralize(@chat.errors.count, "error") %> prohibited this chat from being saved:</h2>
+    <ul>
+      <% @chat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Show this chat", @chat %> |
+  <%= link_to "Back to chats", chats_path %>
+</div>

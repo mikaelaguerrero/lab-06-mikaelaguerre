@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<hr>
+<h2>Participants:</h2>
+<%= render @chat %>
+<br>
+
+<div>
+  <%= link_to "Back to chats", chats_path %>
+
+</div>
+<br>
+
+<h2>Messages in this chat:</h2>
+<ul>
+  <% @chat.messages.each do |message| %>
+    <li>
+      <strong><%= message.user.email %>:</strong> <%= message.body %> —
+      <%= link_to "View", message_path(message) %>
+    </li>
+  <% end %>
+</ul>

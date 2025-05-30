@@ -1,0 +1,28 @@
+<p><strong>Full name:</strong> <%= user.first_name %> <%= user.last_name %></p>
+<p><strong>Email:</strong> <%= user.email %></p>
+<p><strong>Messages sent:</strong> <%= user.messages.count %></p>
+<% unless current_page?(user_path(user)) %>
+  <%= link_to "Show this user", user_path(user) %> 
+<% end %>
+
+<% if can? :edit, user or can? :destroy, user %>
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <% if can? :edit, user %>
+      <div>
+        | <%= link_to "Edit", edit_user_path(user) %>
+      </div>
+    <% end %>
+
+    <% if can? :destroy, user %>
+      <div>
+        <button id="delete-user-<%= user.id %>" onclick="showConfirmUser(<%= user.id %>)">Delete</button>
+        <span id="confirm-delete-user-<%= user.id %>" style="display: none;">
+          <%= button_to "Confirm Delete", user_path(user), method: :delete, data: { turbo_method: :delete }, form: { style: "display:inline;" } %>
+          <button onclick="cancelConfirmUser(<%= user.id %>)">Cancel</button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+  
+<% end %>
+<hr>
