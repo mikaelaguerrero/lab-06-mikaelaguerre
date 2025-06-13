@@ -1,6 +1,9 @@
 class Message < ApplicationRecord
-    belongs_to :chat
-    belongs_to :user
+  belongs_to :chat
+  belongs_to :user
+
+  validates :body, presence: true
+
   
-    validates :body, presence: true
-  end
+  scope :recent_first, -> { order(created_at: :desc) }
+end

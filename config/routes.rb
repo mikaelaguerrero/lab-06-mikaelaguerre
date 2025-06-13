@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :chats, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :messages, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :chats do
+    resources :messages, only: [:create] 
+  end
+
+  resources :messages, only: [:index, :show, :new, :edit, :update, :destroy]
   resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   

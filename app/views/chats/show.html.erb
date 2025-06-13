@@ -7,16 +7,30 @@
 
 <div>
   <%= link_to "Back to chats", chats_path %>
-
 </div>
 <br>
 
 <h2>Messages in this chat:</h2>
 <ul>
-  <% @chat.messages.each do |message| %>
+  <% @chat.messages.recent_first.each do |message| %>
     <li>
       <strong><%= message.user.email %>:</strong> <%= message.body %> —
       <%= link_to "View", message_path(message) %>
     </li>
   <% end %>
 </ul>
+
+<hr>
+
+<h2>Send a message:</h2>
+
+<%= form_with(model: [@chat, Message.new], local: true) do |form| %>
+  <div>
+    <%= form.label :body, "Message" %><br>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.submit "Send" %>
+  </div>
+<% end %>

@@ -1,11 +1,10 @@
 <p>
-  <strong>Sender:</strong>
-  <%= chat.sender.email %>
-</p>
-
-<p>
-  <strong>Receiver:</strong>
-  <%= chat.receiver.email %>
+  <strong>Conversation with:</strong>
+  <% if chat.sender == current_user %>
+    <%= chat.receiver.email %>
+  <% else %>
+    <%= chat.sender.email %>
+  <% end %>
 </p>
 
 <% unless current_page?(chat_path(chat)) %>
@@ -20,13 +19,10 @@
       </div>
       <div id="confirm-delete-<%= chat.id %>" style="display: none; margin-top: 5px;">
         <%= button_to "Confirm Delete", chat_path(chat), method: :delete, form: { style: "display: inline;" }, data: { turbo: false } %>
-
         <button type="button" onclick="cancelConfirm(#{chat.id})">Cancel</button>
       </div>
     <% end %>
-
   </p>
 <% end %>
-
 
 <hr>

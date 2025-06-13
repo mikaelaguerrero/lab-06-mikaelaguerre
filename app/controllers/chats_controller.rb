@@ -2,7 +2,7 @@ class ChatsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @chats = @chats.accessible_by(current_ability)
+    @chats = Chat.involving(current_user)
   end
 
   def show

@@ -17,18 +17,17 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(message_params)
+    @chat = Chat.find(params[:chat_id])
+    @message = @chat.messages.build(message_params)
+    @message.user = current_user
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to @message, notice: "Message was successfully created." }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+    if @message.save
+      redirect_to @chat, notice: "Message was successfully sent."
+    else
+      redirect_to @chat, alert: "Message could not be sent."
     end
   end
+
 
   def update
     respond_to do |format|
